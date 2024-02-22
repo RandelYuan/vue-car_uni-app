@@ -24,33 +24,33 @@
 </script>
 
 <template>
-	<div class="container">
-		<div class="container-wrapper">
-			<div class="container-wrapper__left">
+	<div class="content">
+		<div class="content-wrapper">
+			<div class="content-wrapper__left">
 				<span class="normal-text">品优购欢迎您！</span>
 				<span class="normal-text hover-color">请登录</span>
 				<span class="key-text hover-color">免费注册</span>
 			</div>
-			<div class="container-wrapper__right">
-				<span v-for="(item, index) in navList" :key="item.title"
-					:class="['hover-color', item.keyText ? 'key-text' : 'normal-text']">
-					{{ item.title }}
+			<div class="content-wrapper__right">
+				<div v-for="(item, index) in navList" :key="item.title" class="content-wrapper__right-item">
+					<span :class="['hover-color', item.keyText ? 'key-text' : 'normal-text']">{{ item.title }}</span>
 					<span v-if="item.expand" class="expand-icon">></span>
 					<span class="separate">|</span>
-				</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped lang="scss">
-	.container {
+	.content {
 		width: 100vw;
 		height: 30px;
+		line-height: initial;
 		background: #F1F1F1;
 	}
 
-	.container-wrapper {
+	.content-wrapper {
 		margin: 0 auto;
 		display: flex;
 		align-items: center;
@@ -60,27 +60,32 @@
 		font-size: 12px;
 	}
 
-	.container-wrapper__left {
+	.content-wrapper__left {
 		span + span {
 			margin-left: 5px;
 		}
 	}
 
-	.container-wrapper__right {
-		.expand-icon {
-			display: inline-block;
-			margin-left: 3px;
-			transform: rotate(90deg);
-			font-weight: 700;
-			color: #666;
-		}
+	.content-wrapper__right {
+		display: flex;
+		flex-direction: row;
 
-		span:last-child .separate {
-			display: none;
-		}
+		.content-wrapper__right-item {
+			&:last-child .separate {
+				display: none;
+			}
 
-		.separate {
-			margin: 0 10px;
+			.expand-icon {
+				display: inline-block;
+				margin-left: 3px;
+				transform: rotate(90deg);
+				font-weight: 700;
+				color: #666;
+			}
+
+			.separate {
+				margin: 0 10px;
+			}
 		}
 	}
 
